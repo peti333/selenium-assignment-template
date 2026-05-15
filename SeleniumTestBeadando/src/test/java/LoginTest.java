@@ -1,12 +1,17 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.*;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.net.MalformedURLException;
 
@@ -36,6 +41,7 @@ public class LoginTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-blink-features=AutomationControlled");
         driver = new RemoteWebDriver(new URL("http://selenium:4444/wd/hub"), options);
         driver.manage().window().maximize();
 
@@ -43,7 +49,9 @@ public class LoginTest {
     }
 
     @Test
-    public void testLoginSuccessAndLogout() {
+    public void testLoginSuccessAndLogout() throws IOException {
+        try{
+            
         this.driver.get("https://letterboxd.com/");
 
         WebElement SignInElement = waitVisibilityAndFindElement(SignInLocator);
@@ -72,6 +80,13 @@ public class LoginTest {
 
         WebElement SignInElementAfterSignOut = waitVisibilityAndFindElement(SignInLocator);
         Assert.assertTrue(SignInElement.getText().contains("SIGN IN"));
+
+        }
+        catch(AssertionError e){
+            File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenShot, new File("screenShots/testLoginSuccessAndLogout.png"));
+            throw e;
+        }
     }
 
 }
