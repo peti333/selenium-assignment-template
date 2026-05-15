@@ -51,7 +51,7 @@ public class LoginTest {
     @Test
     public void testLoginSuccessAndLogout() throws IOException {
         try{
-            
+
         this.driver.get("https://letterboxd.com/");
 
         WebElement SignInElement = waitVisibilityAndFindElement(SignInLocator);
@@ -66,7 +66,7 @@ public class LoginTest {
         PasswordInput.sendKeys(password);
         SignInButton.click();
 
-        this.wait.until(ExpectedConditions.urlContains("/welcome"));
+        this.wait.until(ExpectedConditions.urlContains("/welcome/"));
         WebElement Account = waitVisibilityAndFindElement(AccountLocator);
         Assert.assertTrue(Account.getText().contains(username));
 
@@ -83,8 +83,9 @@ public class LoginTest {
 
         }
         catch(AssertionError e){
+            System.out.println("Taking screenshot");
             File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenShot, new File("screenShots/testLoginSuccessAndLogout.png"));
+            FileUtils.copyFile(screenShot, new File("./screenShots/testLoginSuccessAndLogout.png"));
             throw e;
         }
     }
