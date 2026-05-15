@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
@@ -14,7 +15,16 @@ public class LoginTest {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    private final String email = "haylynn.donohoe@openmail.pro";
+    private final String username = "TestingLogin";
+    private final String password = "BigP4ssW0rd!+2GH.,16";
+
     private final By SignInLocator = By.cssSelector(".navitem.sign-in-menu a span.label");
+    private final By UsernameLocator = By.name("username");
+    private final By PasswordLocator = By.name("password");
+    private final By SignInButtonLocator = By.cssSelector("button[type='submit']");
+    private final By SignOutButtonLocator = By.id("sign-out");
+    private final By AccountLocator = By.cssSelector(".has-icon.toggle-menu");
 
     private WebElement waitVisibilityAndFindElement(By locator) {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -38,7 +48,30 @@ public class LoginTest {
 
         WebElement SignInElement = waitVisibilityAndFindElement(SignInLocator);
         Assert.assertTrue(SignInElement.getText().contains("SIGN IN"));
+        SignInElement.click();
 
+        WebElement UsernameInput = waitVisibilityAndFindElement(UsernameLocator);
+        WebElement PasswordInput = waitVisibilityAndFindElement(PasswordLocator);
+        WebElement SignInButton = waitVisibilityAndFindElement(SignInButtonLocator);
+
+        UsernameInput.sendKeys(username);
+        PasswordInput.sendKeys(password);
+        SignInButton.click();
+
+        this.wait.until(ExpectedConditions.urlContains("/welcome"));
+        WebElement Account = waitVisibilityAndFindElement(AccountLocator);
+        Assert.assertTrue(Account.getText().contains(username));
+
+        // Hover action
+        new Actions(driver)
+                .moveToElement(Account)
+                .perform();
+
+        WebElement SignOutButton = waitVisibilityAndFindElement(SignOutButtonLocator);
+        SignOutButton.click();
+
+        WebElement SignInElementAfterSignOut = waitVisibilityAndFindElement(SignInLocator);
+        Assert.assertTrue(SignInElement.getText().contains("SIGN IN"));
     }
 
 }
