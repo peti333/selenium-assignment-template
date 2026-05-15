@@ -14,7 +14,7 @@ public class LoginTest {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    private final By SignInLocator = By.cssSelector(".navitem.sign-in-menu a");
+    private final By SignInLocator = By.cssSelector(".navitem.sign-in-menu a span.label");
 
     private WebElement waitVisibilityAndFindElement(By locator) {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
