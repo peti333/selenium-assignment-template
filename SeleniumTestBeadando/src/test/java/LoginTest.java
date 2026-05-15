@@ -89,7 +89,6 @@ public class LoginTest {
             System.out.println("Taking screenshot");
             File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(screenShot, new File("./screenShots/testLoginSuccessAndLogout.png"));
-            throw e;
         }
     }
 
