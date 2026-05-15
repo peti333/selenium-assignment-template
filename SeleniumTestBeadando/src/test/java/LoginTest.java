@@ -82,7 +82,7 @@ public class LoginTest {
         Assert.assertTrue(SignInElement.getText().contains("SIGN IN"));
 
         }
-        catch(AssertionError e){
+        catch(Exception e){
             System.out.println("Taking screenshot");
             File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(screenShot, new File("./screenShots/testLoginSuccessAndLogout.png"));
