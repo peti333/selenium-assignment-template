@@ -37,7 +37,8 @@ public class LoginTest {
         this.driver.get("https://letterboxd.com/");
 
         WebElement SignInElement = waitVisibilityAndFindElement(SignInLocator);
-        Assert.assertTrue(SignInElement.getText().contains("Sign in"));
+        System.out.println("TESTING: " + SignInElement.getText());
+        Assert.assertTrue(SignInElement.getText().toLowerCase().contains("sign in"));
 
     }
 
