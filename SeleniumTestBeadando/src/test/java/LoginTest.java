@@ -67,7 +67,7 @@ public class LoginTest {
         SignInButton.click();
 
         // Wait for signing in
-        this.wait(5000);
+        Thread.sleep(10000);
 
         this.wait.until(ExpectedConditions.urlContains("/welcome/"));
         WebElement Account = waitVisibilityAndFindElement(AccountLocator);
@@ -82,7 +82,7 @@ public class LoginTest {
         SignOutButton.click();
 
         WebElement SignInElementAfterSignOut = waitVisibilityAndFindElement(SignInLocator);
-        Assert.assertTrue(SignInElement.getText().contains("SIGN IN"));
+        Assert.assertTrue(SignInElementAfterSignOut.getText().contains("SIGN IN"));
 
         }
         catch(Exception e){
