@@ -1,0 +1,35 @@
+name: Run Selenium Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run_selenium_tests:
+    runs-on: ubuntu-latest
+    container:
+      image: gradle:8.0.2
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Wait for Selenium
+        run: timeout 60 bash -c 'until curl -sSf http://selenium:4444/wd/hub/status 2>/dev/null; do sleep 2; done'
+      
+      - name: Run Gradle tests
+        run: gradle test
+      
+      - name: Upload Test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gradle-test-reports
+          path: build/reports/tests/test
+          retention-days: 7
