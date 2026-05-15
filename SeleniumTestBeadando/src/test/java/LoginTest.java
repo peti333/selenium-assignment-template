@@ -66,6 +66,9 @@ public class LoginTest {
         PasswordInput.sendKeys(password);
         SignInButton.click();
 
+        // Wait for signing in
+        this.wait(5000);
+
         this.wait.until(ExpectedConditions.urlContains("/welcome/"));
         WebElement Account = waitVisibilityAndFindElement(AccountLocator);
         Assert.assertTrue(Account.getText().contains(username));
