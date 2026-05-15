@@ -25,6 +25,7 @@ public class LoginTest {
     private final String password = "BigP4ssW0rd!+2GH.,16";
 
     private final By SignInLocator = By.cssSelector(".navitem.sign-in-menu a span.label");
+    private final By CreateAccLocator = By.cssSelector(".navitem.create-account-menu a span.label");
     private final By UsernameLocator = By.name("username");
     private final By PasswordLocator = By.name("password");
     private final By SignInButtonLocator = By.cssSelector(".signin-form input[type='submit']");
@@ -65,7 +66,7 @@ public class LoginTest {
         UsernameInput.sendKeys(username);
         PasswordInput.sendKeys(password);
         SignInButton.click();
-        
+
         WebElement Account = waitVisibilityAndFindElement(AccountLocator);
         Assert.assertTrue(Account.getText().contains(username));
 
@@ -77,8 +78,8 @@ public class LoginTest {
         WebElement SignOutButton = waitVisibilityAndFindElement(SignOutButtonLocator);
         SignOutButton.click();
 
-        WebElement SignInElementAfterSignOut = waitVisibilityAndFindElement(SignInLocator);
-        Assert.assertTrue(SignInElementAfterSignOut.getText().contains("SIGN IN"));
+        WebElement CreateAcc = waitVisibilityAndFindElement(CreateAccLocator);
+        Assert.assertTrue(CreateAcc.getText().contains("CREATE ACCOUNT"));
 
         }
         catch(Exception e){
