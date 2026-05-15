@@ -49,7 +49,7 @@ public class LoginTest {
     }
 
     @Test
-    public void testLoginSuccessAndLogout() throws IOException {
+    public void testLoginSuccessAndLogout() throws IOException, InterruptedException {
         try{
 
         this.driver.get("https://letterboxd.com/");
@@ -86,9 +86,10 @@ public class LoginTest {
 
         }
         catch(Exception e){
-            System.out.println("Taking screenshot");
+            System.err.println("Taking screenshot");
             File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(screenShot, new File("./screenShots/testLoginSuccessAndLogout.png"));
+            throw e;
         }
     }
 
