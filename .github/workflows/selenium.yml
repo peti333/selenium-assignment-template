@@ -1,11 +1,6 @@
 name: Run Selenium Tests
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+on: push
 jobs:
   run_selenium_tests:
     runs-on: ubuntu-latest
