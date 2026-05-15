@@ -14,6 +14,8 @@ public class LoginTest {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    private final By SignInLocator = By.className("navitem sign-in-menu");
+
     private WebElement waitVisibilityAndFindElement(By locator) {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return this.driver.findElement(locator);
@@ -33,8 +35,6 @@ public class LoginTest {
     @Test
     public void testLoginSuccessAndLogout() {
         this.driver.get("https://letterboxd.com/");
-
-        By SignInLocator = By.className("navitem sign-in-menu");
 
         WebElement SignInElement = waitVisibilityAndFindElement(SignInLocator);
         Assert.assertTrue(SignInElement.getText().contains("Sign in"));
