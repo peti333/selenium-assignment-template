@@ -27,5 +27,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: gradle-test-reports
-          path: build/reports/tests/test
+          path: SeleniumTestBeadando/build/reports/tests/test
           retention-days: 7
