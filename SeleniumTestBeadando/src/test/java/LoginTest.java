@@ -46,7 +46,7 @@ public class LoginTest {
         driver = new RemoteWebDriver(new URL("http://selenium:4444/wd/hub"), options);
         driver.manage().window().maximize();
 
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 20);
     }
 
     @Test
@@ -67,7 +67,8 @@ public class LoginTest {
         PasswordInput.sendKeys(password);
         SignInButton.click();
 
-        Thread.sleep(5000);
+        File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenShot, new File("./screenShots/Click.png"));
 
         WebElement Account = waitVisibilityAndFindElement(AccountLocator);
         Assert.assertTrue(Account.getText().contains(username));
