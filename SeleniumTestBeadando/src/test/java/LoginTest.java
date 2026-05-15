@@ -30,7 +30,7 @@ public class LoginTest {
     private final By PasswordLocator = By.name("password");
     private final By SignInButtonLocator = By.cssSelector(".signin-form input[type='submit']");
     private final By SignOutButtonLocator = By.id("sign-out");
-    private final By AccountLocator = By.cssSelector(".nav-account .toggle-menu");
+    private final By AccountLocator = By.className("toggle-menu");
 
     private WebElement waitVisibilityAndFindElement(By locator) {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -67,7 +67,7 @@ public class LoginTest {
         PasswordInput.sendKeys(password);
         SignInButton.click();
 
-        Thread.sleep(40000);
+        Thread.sleep(20000);
 
         WebElement Account = waitVisibilityAndFindElement(AccountLocator);
         Assert.assertTrue(Account.getText().contains(username));
