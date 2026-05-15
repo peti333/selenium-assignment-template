@@ -67,6 +67,8 @@ public class LoginTest {
         PasswordInput.sendKeys(password);
         SignInButton.click();
 
+        Thread.sleep(40000);
+
         WebElement Account = waitVisibilityAndFindElement(AccountLocator);
         Assert.assertTrue(Account.getText().contains(username));
 
@@ -77,8 +79,6 @@ public class LoginTest {
 
         WebElement SignOutButton = waitVisibilityAndFindElement(SignOutButtonLocator);
         SignOutButton.click();
-
-        Thread.sleep(40000);
 
         WebElement CreateAcc = waitVisibilityAndFindElement(CreateAccLocator);
         Assert.assertTrue(CreateAcc.getText().contains("CREATE ACCOUNT"));
