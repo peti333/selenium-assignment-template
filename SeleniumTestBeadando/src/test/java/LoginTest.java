@@ -22,7 +22,7 @@ public class LoginTest {
     private final By SignInLocator = By.cssSelector(".navitem.sign-in-menu a span.label");
     private final By UsernameLocator = By.name("username");
     private final By PasswordLocator = By.name("password");
-    private final By SignInButtonLocator = By.cssSelector("button[type='submit']");
+    private final By SignInButtonLocator = By.cssSelector(".signin-form input[type='submit']");
     private final By SignOutButtonLocator = By.id("sign-out");
     private final By AccountLocator = By.cssSelector(".has-icon.toggle-menu");
 
