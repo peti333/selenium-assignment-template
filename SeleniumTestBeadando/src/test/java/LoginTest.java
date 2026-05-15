@@ -78,7 +78,7 @@ public class LoginTest {
         WebElement SignOutButton = waitVisibilityAndFindElement(SignOutButtonLocator);
         SignOutButton.click();
 
-        Thread.sleep(8000);
+        Thread.sleep(20000);
 
         WebElement CreateAcc = waitVisibilityAndFindElement(CreateAccLocator);
         Assert.assertTrue(CreateAcc.getText().contains("CREATE ACCOUNT"));
