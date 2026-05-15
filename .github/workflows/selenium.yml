@@ -29,3 +29,10 @@ jobs:
           name: gradle-test-reports
           path: SeleniumTestBeadando/build/reports/tests/test
           retention-days: 7
+      - name: Upload Fail screenshots
+        if: failure()
+        uses: actions/upload-artifact@4
+        with:
+          name: selenium-screenshots
+          path: SeleniumTestBeadando/screenShots/
+          retention-days: 7
