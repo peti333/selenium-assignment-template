@@ -16,15 +16,13 @@ import java.net.MalformedURLException;
 
 public class LoginTest extends BaseTest {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-
     private final String username = "asd";
     private final String password = "asd";
 
     private final By UsernameLocator = By.id("tfUName");
     private final By PasswordLocator = By.id("tfUPass");
     private final By SignInButtonLocator = By.cssSelector("input[type='submit']");
+    private final By LogoutButtonLocator = By.xpath("//div[@class='menubar']//a[text()='logout asd']");
 
     @Before
     public void setup() throws MalformedURLException {
@@ -45,7 +43,7 @@ public class LoginTest extends BaseTest {
             PasswordInput.sendKeys(password);
             SignInButton.click();
 
-            WebElement logoutButton = driver.findElement(By.xpath("//div[@class='menubar']//a[text()='logout asd']"));
+            WebElement logoutButton = waitVisibilityAndFindElement(LogoutButtonLocator);
             Assert.assertTrue(logoutButton.getText().contains("logout asd"));
 
             logoutButton.click();
