@@ -81,7 +81,7 @@ basic:
     description: "Define an array of URLs or page data, iterate over them and verify something on each page (e.g. check title or a specific element on 5 different pages using a loop)"
 
   complex_xpath:             # 1 pt each | repeatable | max 10
-    count: 0
+    count: 2
     description: "Use a complex XPath expression (e.g. //div[@class='content']//a[contains(@href,'profile')])"
 
   textarea:                  # 1 pt | once
@@ -102,7 +102,7 @@ basic:
     description: "Project has at least 4 Java classes"
 
   at_least_6_classes:        # 3 pts | once
-    done: false
+    done: true
     description: "Project has at least 6 Java classes (cumulative with above)"
 
   at_least_8_classes:        # 3 pts | once
@@ -110,7 +110,7 @@ basic:
     description: "Project has at least 8 Java classes (cumulative with above)"
 
   explicit_wait:             # 3 pts | once
-    done: false
+    done: true
     description: "Use explicit wait (WebDriverWait with ExpectedConditions)"
     link: "https://www.selenium.dev/documentation/webdriver/waits/"
 
@@ -146,12 +146,12 @@ advanced:
     link: "https://www.selenium.dev/documentation/webdriver/interactions/cookies/"
 
   hover_test:                # 6 pts | once
-    done: false
+    done: true
     description: "Perform a hover (mouse over) action and verify the result"
     link: "https://www.selenium.dev/documentation/webdriver/actions_api/mouse/"
 
   drag_and_drop:             # 8 pts | once
-    done: false
+    done: true
     description: "Drag and drop an element to another location"
     link: "https://www.selenium.dev/documentation/webdriver/actions_api/mouse/"
 

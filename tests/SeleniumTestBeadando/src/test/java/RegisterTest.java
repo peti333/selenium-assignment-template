@@ -51,7 +51,6 @@ public class RegisterTest extends BaseTest {
 
   @Before
   public void setup() throws MalformedURLException {
-    baseSetup();
     generateRandomUserData();
   }
 

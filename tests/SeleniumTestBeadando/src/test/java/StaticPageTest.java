@@ -19,11 +19,6 @@ public class StaticPageTest extends BaseTest {
   private final By FooterLocator = By.className("footer");
   private final By MenuBarLocator = By.className("menubar");
 
-  @Before
-  public void setup() throws MalformedURLException {
-    baseSetup();
-  }
-
   @Test
   public void staticPageTesting() {
 

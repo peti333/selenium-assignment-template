@@ -12,7 +12,7 @@ services:
       - SE_VNC_NO_PASSWORD=1
       - SE_SCREEN_WIDTH=1800
       - SE_SCREEN_HEIGHT=960
-      - SE_NODE_MAX_SESSIONS=3
+      - SE_NODE_MAX_SESSIONS=4
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
     ports:
       - "4444:4444"

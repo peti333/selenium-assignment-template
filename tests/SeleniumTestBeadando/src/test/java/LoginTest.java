@@ -24,11 +24,8 @@ public class LoginTest extends BaseTest {
     private final By SignInButtonLocator = By.cssSelector("input[type='submit']");
     private final By LogoutButtonLocator = By.xpath("//div[@class='menubar']//a[text()='logout asd']");
 
-    @Before
-    public void setup() throws MalformedURLException {
-        baseSetup();
-    }
-
+    // Will only work if account with "asd" username and password was recently
+    // created because the website removes accounts very fast
     @Test
     public void testLoginSuccessAndLogout() throws IOException, InterruptedException {
         try {

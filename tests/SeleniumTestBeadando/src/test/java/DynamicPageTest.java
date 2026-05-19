@@ -35,11 +35,6 @@ public class DynamicPageTest extends BaseTest {
       "acuforum register"
   };
 
-  @Before
-  public void setup() throws MalformedURLException {
-    baseSetup();
-  }
-
   @Test
   public void DynamicPageTesting() {
 

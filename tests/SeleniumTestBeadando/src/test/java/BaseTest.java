@@ -24,6 +24,7 @@ public class BaseTest {
     return this.driver.findElement(locator);
   }
 
+  @Before
   public void baseSetup() throws MalformedURLException {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--no-sandbox");
@@ -32,6 +33,11 @@ public class BaseTest {
     driver.manage().window().maximize();
 
     wait = new WebDriverWait(driver, 10);
+  }
+
+  @After
+  public void closeDriver(){
+    this.driver.quit();
   }
 
 }
