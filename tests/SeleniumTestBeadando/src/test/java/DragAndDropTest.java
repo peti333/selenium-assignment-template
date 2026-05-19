@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.MalformedURLException;
 
-public class DragAndDrop extends BaseTest {
+public class DragAndDropTest extends BaseTest {
 
   private final By MenuForumsLocator = By.xpath("//div[@class='menubar']//a[text()='forums']");
   private final By SearchInputLocator = By.cssSelector("input[name='tfSearch']");

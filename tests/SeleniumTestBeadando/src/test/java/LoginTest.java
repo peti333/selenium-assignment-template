@@ -8,6 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.Cookie;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,6 +79,39 @@ public class LoginTest extends BaseTest {
             throw e;
         }
 
+    }
+
+    @Test
+    public void testLoginSuccessfulAndDeleteCookie() throws IOException, InterruptedException {
+        try {
+
+            this.driver.get("http://testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F");
+
+            WebElement UsernameInput = waitVisibilityAndFindElement(UsernameLocator);
+            WebElement PasswordInput = waitVisibilityAndFindElement(PasswordLocator);
+            WebElement SignInButton = waitVisibilityAndFindElement(SignInButtonLocator);
+
+            UsernameInput.sendKeys(username);
+            PasswordInput.sendKeys(password);
+            SignInButton.click();
+
+            WebElement logoutButton = waitVisibilityAndFindElement(LogoutButtonLocator);
+            Assert.assertTrue(logoutButton.getText().contains("logout asd"));
+
+            Cookie cookie = driver.manage().getCookieNamed("ASPSESSIONIDCSABCTCC");
+            Assert.assertNotEquals(cookie.getValue(), "");
+            this.driver.manage().deleteCookieNamed("ASPSESSIONIDCSABCTCC");
+
+            this.driver.navigate().refresh();
+
+            WebElement loginButton = driver.findElement(By.xpath("//div[@class='menubar']//a[text()='login']"));
+            Assert.assertTrue(loginButton.getText().contains("login"));
+
+        } catch (Exception e) {
+            File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenShot, new File("./screenShots/testLoginUnSuccessful.png"));
+            throw e;
+        }
     }
 
 }
