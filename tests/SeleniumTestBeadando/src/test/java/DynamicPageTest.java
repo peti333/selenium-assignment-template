@@ -36,31 +36,31 @@ public class DynamicPageTest extends BaseTest {
   };
 
   @Test
-  public void DynamicPageTesting() {
+  public void DynamicPageTesting() throws IOException, InterruptedException {
 
-    try{
-    for (int i = 0; i < URLs.length; ++i) {
-      this.driver.get(URLs[i]);
+    try {
+      for (int i = 0; i < URLs.length; ++i) {
+        this.driver.get(URLs[i]);
 
-      WebElement MenuBar = waitVisibilityAndFindElement(MenuBarLocator);
-      WebElement Warning = waitVisibilityAndFindElement(WarningLocator);
+        WebElement MenuBar = waitVisibilityAndFindElement(MenuBarLocator);
+        WebElement Warning = waitVisibilityAndFindElement(WarningLocator);
 
-      Assert.assertTrue(this.driver.getTitle().toLowerCase().contains(titles[i]));
-      Assert.assertTrue(MenuBar.getText().contains("about"));
-      Assert.assertTrue(MenuBar.getText().contains("forums"));
-      Assert.assertTrue(MenuBar.getText().contains("search"));
-      Assert.assertTrue(MenuBar.getText().contains("login"));
-      Assert.assertTrue(MenuBar.getText().contains("register"));
-      Assert.assertTrue(MenuBar.getText().contains("SQL scanner"));
-      Assert.assertTrue(MenuBar.getText().contains("SQL vuln help"));
-      Assert.assertTrue(Warning.getText().contains("Warning:"));
+        Assert.assertTrue(this.driver.getTitle().toLowerCase().contains(titles[i]));
+        Assert.assertTrue(MenuBar.getText().contains("about"));
+        Assert.assertTrue(MenuBar.getText().contains("forums"));
+        Assert.assertTrue(MenuBar.getText().contains("search"));
+        Assert.assertTrue(MenuBar.getText().contains("login"));
+        Assert.assertTrue(MenuBar.getText().contains("register"));
+        Assert.assertTrue(MenuBar.getText().contains("SQL scanner"));
+        Assert.assertTrue(MenuBar.getText().contains("SQL vuln help"));
+        Assert.assertTrue(Warning.getText().contains("Warning:"));
 
-    }
+      }
     } catch (Exception e) {
-            File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenShot, new File("./screenShots/testDynamicPage.png"));
-            throw e;
-        }
+      File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+      FileUtils.copyFile(screenShot, new File("./screenShots/testDynamicPage.png"));
+      throw e;
+    }
   }
 
 }

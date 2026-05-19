@@ -20,29 +20,28 @@ public class StaticPageTest extends BaseTest {
   private final By MenuBarLocator = By.className("menubar");
 
   @Test
-  public void staticPageTesting() {
+  public void staticPageTesting() throws IOException, InterruptedException {
 
-    try{
+    try {
 
-    this.driver.get("http://testasp.vulnweb.com/Templatize.asp?item=html/about.html");
+      this.driver.get("http://testasp.vulnweb.com/Templatize.asp?item=html/about.html");
 
-    WebElement Footer = waitVisibilityAndFindElement(FooterLocator);
-    Assert.assertTrue(Footer.getText().contains("Copyright 2019 Acunetix Ltd."));
+      WebElement Footer = waitVisibilityAndFindElement(FooterLocator);
+      Assert.assertTrue(Footer.getText().contains("Copyright 2019 Acunetix Ltd."));
 
-    WebElement MenuBar = waitVisibilityAndFindElement(MenuBarLocator);
-    Assert.assertTrue(MenuBar.getText().contains("about"));
-    Assert.assertTrue(MenuBar.getText().contains("forums"));
-    Assert.assertTrue(MenuBar.getText().contains("search"));
-    Assert.assertTrue(MenuBar.getText().contains("login"));
-    Assert.assertTrue(MenuBar.getText().contains("register"));
-    Assert.assertTrue(MenuBar.getText().contains("SQL scanner"));
-    Assert.assertTrue(MenuBar.getText().contains("SQL vuln help"));
-  }
-  catch( Exception e)
-  {
-    File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(screenShot, new File("./screenShots/testStaticPage.png"));
-    throw e;
+      WebElement MenuBar = waitVisibilityAndFindElement(MenuBarLocator);
+      Assert.assertTrue(MenuBar.getText().contains("about"));
+      Assert.assertTrue(MenuBar.getText().contains("forums"));
+      Assert.assertTrue(MenuBar.getText().contains("search"));
+      Assert.assertTrue(MenuBar.getText().contains("login"));
+      Assert.assertTrue(MenuBar.getText().contains("register"));
+      Assert.assertTrue(MenuBar.getText().contains("SQL scanner"));
+      Assert.assertTrue(MenuBar.getText().contains("SQL vuln help"));
+    } catch (Exception e) {
+      File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+      FileUtils.copyFile(screenShot, new File("./screenShots/testStaticPage.png"));
+      throw e;
+    }
   }
 
 }

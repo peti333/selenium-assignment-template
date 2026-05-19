@@ -19,7 +19,7 @@ public class NavigationTest extends BaseTest {
   private final By MenuSearchLocator = By.xpath("//div[@class='menubar']//a[text()='search']");
 
   @Test
-  public void NavigateMenubarTest() {
+  public void NavigateMenubarTest() throws IOException, InterruptedException {
     try {
       this.driver.get("http://testasp.vulnweb.com/");
       Assert.assertTrue(this.driver.getTitle().contains("acuforum forums"));
