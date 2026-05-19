@@ -109,7 +109,7 @@ public class LoginTest extends BaseTest {
 
         } catch (Exception e) {
             File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenShot, new File("./screenShots/testLoginUnSuccessful.png"));
+            FileUtils.copyFile(screenShot, new File("./screenShots/testLoginUnSuccessfulAndDeleteCookie.png"));
             throw e;
         }
     }

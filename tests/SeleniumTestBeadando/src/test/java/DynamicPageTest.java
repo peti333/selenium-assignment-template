@@ -38,6 +38,7 @@ public class DynamicPageTest extends BaseTest {
   @Test
   public void DynamicPageTesting() {
 
+    try{
     for (int i = 0; i < URLs.length; ++i) {
       this.driver.get(URLs[i]);
 
@@ -55,7 +56,11 @@ public class DynamicPageTest extends BaseTest {
       Assert.assertTrue(Warning.getText().contains("Warning:"));
 
     }
-
+    } catch (Exception e) {
+            File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenShot, new File("./screenShots/testDynamicPage.png"));
+            throw e;
+        }
   }
 
 }

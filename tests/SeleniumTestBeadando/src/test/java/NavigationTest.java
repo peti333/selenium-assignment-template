@@ -20,19 +20,26 @@ public class NavigationTest extends BaseTest {
 
   @Test
   public void NavigateMenubarTest() {
-    this.driver.get("http://testasp.vulnweb.com/");
-    Assert.assertTrue(this.driver.getTitle().contains("acuforum forums"));
+    try {
+      this.driver.get("http://testasp.vulnweb.com/");
+      Assert.assertTrue(this.driver.getTitle().contains("acuforum forums"));
 
-    WebElement MenuSearch = waitVisibilityAndFindElement(MenuSearchLocator);
-    MenuSearch.click();
+      WebElement MenuSearch = waitVisibilityAndFindElement(MenuSearchLocator);
+      MenuSearch.click();
 
-    Assert.assertTrue(this.driver.getTitle().contains("acuforum search"));
+      Assert.assertTrue(this.driver.getTitle().contains("acuforum search"));
 
-    this.driver.navigate().back();
-    Assert.assertTrue(this.driver.getTitle().contains("acuforum forums"));
+      this.driver.navigate().back();
+      Assert.assertTrue(this.driver.getTitle().contains("acuforum forums"));
 
-    this.driver.navigate().forward();
-    Assert.assertTrue(this.driver.getTitle().contains("acuforum search"));
+      this.driver.navigate().forward();
+      Assert.assertTrue(this.driver.getTitle().contains("acuforum search"));
+
+    } catch (Exception e) {
+      File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+      FileUtils.copyFile(screenShot, new File("./screenShots/testNavigation.png"));
+      throw e;
+    }
   }
 
 }

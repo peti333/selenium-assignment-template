@@ -48,7 +48,7 @@ public class HoverTest extends BaseTest {
       Assert.assertEquals("rgba(0, 143, 0, 1)", hoverBackgroundColor);
     } catch (Exception e) {
       File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-      FileUtils.copyFile(screenShot, new File("./screenShots/hoverTest.png"));
+      FileUtils.copyFile(screenShot, new File("./screenShots/testHover.png"));
       throw e;
     }
   }

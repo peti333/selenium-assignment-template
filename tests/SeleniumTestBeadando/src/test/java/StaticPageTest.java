@@ -22,6 +22,8 @@ public class StaticPageTest extends BaseTest {
   @Test
   public void staticPageTesting() {
 
+    try{
+
     this.driver.get("http://testasp.vulnweb.com/Templatize.asp?item=html/about.html");
 
     WebElement Footer = waitVisibilityAndFindElement(FooterLocator);
@@ -35,6 +37,12 @@ public class StaticPageTest extends BaseTest {
     Assert.assertTrue(MenuBar.getText().contains("register"));
     Assert.assertTrue(MenuBar.getText().contains("SQL scanner"));
     Assert.assertTrue(MenuBar.getText().contains("SQL vuln help"));
+  }
+  catch( Exception e)
+  {
+    File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    FileUtils.copyFile(screenShot, new File("./screenShots/testStaticPage.png"));
+    throw e;
   }
 
 }
